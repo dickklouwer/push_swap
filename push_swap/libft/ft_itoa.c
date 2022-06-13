@@ -6,7 +6,7 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/30 15:13:51 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/03/28 14:47:12 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/06/13 15:33:26 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,6 @@ static int	ft_abs(int i)
 		return (-i);
 	else
 		return (i);
-}
-
-static int	ft_intlen(int n)
-{
-	int	len;
-
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		n /= 10;
-		len++;
-	}
-	if (len == 0)
-		len++;
-	return (len);
 }
 
 static int	positive_check(int num)
