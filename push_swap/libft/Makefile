@@ -6,7 +6,7 @@
 #    By: tklouwer <tklouwer@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/13 10:02:57 by tklouwer      #+#    #+#                  #
-#    Updated: 2022/03/23 14:28:03 by tklouwer      ########   odam.nl          #
+#    Updated: 2022/06/21 13:54:31 by tklouwer      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS = 			ft_memset.c $\
 				ft_atoi.c $\
 				ft_isalpha.c $\
 				ft_isdigit.c $\
+				ft_intlen.c $\
 				ft_isalnum.c $\
 				ft_isascii.c $\
 				ft_isprint.c $\
@@ -48,7 +49,7 @@ SRCS = 			ft_memset.c $\
 				ft_putnbr_fd.c $\
 				ft_isset.c $\
 				ft_itoa_base.c $\
-
+				
 BONUS_SRCS =	ft_lstnew.c $\
 				ft_lstadd_front.c $\
 				ft_lstsize.c $\

@@ -6,52 +6,53 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 13:23:03 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/06/13 15:35:43 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/09/22 17:51:22 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-t_stack	*lst_new(int value)
+// t_stack	*lst_new(int value)
+// {
+// 	t_stack *new;
+
+// 	new = (void *)malloc(sizeof(t_stack));
+// 	if (!new)
+// 		return (NULL);
+// 	new->value = value;
+// 	new->next = NULL;
+// 	return (new);
+// }
+
+int	parse_stack(t_list **stack, char **argv, int argc)
 {
-	t_stack *new;
-
-	new = ft_calloc(ft_intlen(value), sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = ft_calloc(ft_intlen(value) + 1, sizeof(int));
-	new->value = &value;
-	new->next = NULL;
-	return (new);
-}
-
-int	parse_stack(t_stack **stack, char **argv)
-{
-	int i;
-
-	i = 0;
-	while (argv[i][0])
+	int nb;
+	t_list *temp;
+	
+	nb = 0;
+	while (argc > 1)
 	{
-		*stack = lst_new(ft_atoi(argv[i]));
-		printf("%i", *stack.value);
-		i++;
+		argc--;
+		nb = ft_atoi(argv[argc]);
+		temp = ft_lstnew(nb);
+		printf("%i\n", temp->content);
+		ft_lstadd_back(stack, temp);
 	}
 	return (0);
 }
 
-int main(int argc, char **argv )
+int main(int argc, char **argv)
 {
-	t_stack **stack_a;
-	t_stack *stack_b;
+	t_list **stack_a;
 
 	stack_a = NULL;
-	stack_b = NULL;
 	if (argc == 0)
 		return (0);
 	else
 	{
-		parse_stack(stack_a, argv);
+		parse_stack(stack_a, argv, argc);
 	}
 	return (0);
 }

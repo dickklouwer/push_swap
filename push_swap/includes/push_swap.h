@@ -6,7 +6,7 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 13:30:53 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/05/31 14:51:39 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/06/21 14:16:20 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_stack
 {
-    int             *value;
+    int             value;
     struct s_stack  *next;
 }              t_stack;
 

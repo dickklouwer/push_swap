@@ -6,13 +6,13 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/13 15:27:17 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/06/13 15:33:34 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/06/21 13:54:17 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(int n)
+int	ft_intlen(int n)
 {
 	int	len;
 
