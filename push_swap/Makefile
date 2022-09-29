@@ -6,12 +6,15 @@
 #    By: tklouwer <tklouwer@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/30 13:24:22 by tklouwer      #+#    #+#                  #
-#    Updated: 2022/09/22 16:49:55 by tklouwer      ########   odam.nl          #
+#    Updated: 2022/09/28 14:06:56 by tklouwer      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
 SRCS = push_swap.c \
+		stack_utils.c \
+		sort.c
+
 
 
 SRCSDIR = srcs
@@ -27,9 +30,6 @@ OBJ_LIBFT := $(shell find libft -name '.o')
 
 all: $(NAME)
 
-$(COMPILE):
-	gcc includes/push_swap.h srcs/push_swap.c push_swap.a
-
 $(NAME): $(OBJDIR) $(LIBFT) $(OBJ)
 	$(OPTIONS) $(NAME) $(OBJ_LIBFT) $(OBJ)
 
@@ -42,7 +42,6 @@ $(OBJDIR):
 $(LIBFT):
 	$(MAKE) -C libft WITH_BONUS=1
 	cp $(LIBFT) $(NAME) 
-
 
 clean:
 	$(MAKE) -C libft clean

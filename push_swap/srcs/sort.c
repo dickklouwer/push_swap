@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstiter.c                                       :+:    :+:            */
+/*   sort.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/13 14:08:32 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/09/28 10:50:22 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/09/28 14:06:11 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/09/28 14:36:28 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-int	ft_lstiter(t_list *lst, int (*f)(int))
+int get_top(t_stack *stack)
 {
-	if (!lst)
-		return 0;
-	while (lst)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
-	return (0);
+    if (!stack)
+        return (0);
+    return (stack->content);
+}
+
+int check_is_sorted(t_stack *stack)
+{
+    while (stack->next != NULL)
+    {
+        if (stack->content > stack->next->content)
+        {
+            write(1, "1", 1);
+            // stack = stack->next;
+        }
+        stack = stack->next;
+    }
+    return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dickklouwer <tklouwer@student.codam.nl>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/23 11:12:19 by dickklouwer   #+#    #+#                 */
-/*   Updated: 2022/09/22 16:47:42 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/09/26 14:53:48 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_list
 	int				content;
 	struct s_list	*next;
 }					t_list;
+
+int					ft_lstiter(t_list *lst, int (*f)(int));
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
 
