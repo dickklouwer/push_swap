@@ -6,7 +6,7 @@
 /*   By: dickklouwer <tklouwer@student.codam.nl>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/23 11:12:19 by dickklouwer   #+#    #+#                 */
-/*   Updated: 2022/03/28 14:40:43 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/09/26 14:53:48 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void				*ft_calloc(size_t count, size_t size);
 int					ft_isset(int c, char *set);
 
 int					ft_isdigit(int c);
+
+int					ft_intlen(int n);
 
 size_t				ft_strlen(const char *s);
 
@@ -93,9 +95,11 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 typedef struct s_list
 {
-	void			*content;
+	int				content;
 	struct s_list	*next;
 }					t_list;
+
+int					ft_lstiter(t_list *lst, int (*f)(int));
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
 
@@ -103,12 +107,12 @@ void				ft_lstadd_front(t_list **lst, t_list *new);
 
 int					ft_lstsize(t_list *lst);
 
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(int content);
 
 t_list				*ft_lstlast(t_list *lst);
 
-void				ft_lstdelone(t_list *lst, void (*del)(void*));
+void				ft_lstdelone(t_list *lst, void (*del)(int));
 
-void				ft_lstclear(t_list **lst, void (*del)(void*));
+void				ft_lstclear(t_list **lst, void (*del)(int));
 
 #endif

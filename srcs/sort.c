@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstclear.c                                      :+:    :+:            */
+/*   sort.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/13 11:15:07 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/09/22 16:48:05 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/09/28 14:06:11 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/09/28 14:36:28 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+int get_top(t_stack *stack)
 {
-	t_list	*current;
+    if (!stack)
+        return (0);
+    return (stack->content);
+}
 
-	while (*lst)
-	{
-		current = *lst;
-		*lst = current->next;
-		ft_lstdelone(current, del);
-	}
-	*lst = NULL;
+int check_is_sorted(t_stack *stack)
+{
+    while (stack->next != NULL)
+    {
+        if (stack->content > stack->next->content)
+        {
+            write(1, "1", 1);
+            // stack = stack->next;
+        }
+        stack = stack->next;
+    }
+    return (1);
 }

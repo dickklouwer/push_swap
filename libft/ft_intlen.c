@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstdelone.c                                     :+:    :+:            */
+/*   ft_intlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: dickklouwer <tklouwer@student.codam.nl>      +#+                     */
+/*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/12 17:57:48 by dickklouwer   #+#    #+#                 */
-/*   Updated: 2022/09/22 16:46:56 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/06/13 15:27:17 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/06/21 13:54:17 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(int))
+int	ft_intlen(int n)
 {
-	(*del)(lst->content);
-	free(lst);
+	int	len;
+
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n != 0)
+	{
+		n /= 10;
+		len++;
+	}
+	if (len == 0)
+		len++;
+	return (len);
 }
