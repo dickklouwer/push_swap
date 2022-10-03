@@ -6,7 +6,7 @@
 /*   By: dickklouwer <tklouwer@student.codam.nl>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/23 11:12:19 by dickklouwer   #+#    #+#                 */
-/*   Updated: 2022/09/26 14:53:48 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/10/03 13:51:44 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ size_t				ft_strlen(const char *s);
 void				*ft_memset(void *b, int c, size_t len);
 
 int					ft_atoi(const char *str);
+
+long long			ft_atol(const char *str);
 
 char				*ft_itoa(int n);
 

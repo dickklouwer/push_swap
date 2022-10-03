@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_atol.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: dickklouwer <tklouwer@student.codam.nl>      +#+                     */
+/*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/11 12:21:21 by dickklouwer   #+#    #+#                 */
-/*   Updated: 2022/10/03 13:51:05 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/10/03 13:49:28 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/10/03 13:50:54 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long long	ft_atol(const char *str)
 {
 	long	res;
 	int		min;
@@ -27,6 +27,8 @@ int	ft_atoi(const char *str)
 		if (str[i] == '-')
 			min *= -1;
 		i++;
+		if (str[i] == '+' || str[i] == '-')
+			return (0);
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
