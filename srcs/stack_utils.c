@@ -6,7 +6,7 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/28 10:55:36 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/09/28 14:32:40 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/10/05 15:01:07 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,23 @@ void	ft_stckadd_back(t_stack **stack, t_stack *new)
 	last->next = new;
 }
 
+void	ft_stckadd_front(t_stack **stack, t_stack *new)
+{
+	if (!stack || !new)
+		return ;
+	new->next = *stack;
+	*stack = new;
+}
+
 void	ft_putstack(t_stack *stack)
 {
 	while(stack)
 	{
 		ft_putnbr_fd(stack->content, 1);
-		write(1, "\n", 1);
+		write(1, " ", 1);
 		stack = stack->next;
 	}
+	write(1, "\n", 1);
 }
 
 t_stack	*ft_stcklast(t_stack *stack)

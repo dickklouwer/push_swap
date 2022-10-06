@@ -6,7 +6,7 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 13:23:03 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/10/03 14:39:30 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/10/06 12:09:57 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,25 @@ int		check_double(char **argv, int argc)
 
 int		valid_input(char **argv, int argc)
 {
-	int check;
 	long nb_argv;
 	int i;
 
 	i = 0;
 	nb_argv = 0;
-	check = check_double(argv, argc);
-	if ((check))
+	if (check_double(argv, argc))
+	{
+		write(1, "ERROR\n", 5);
 		return (1);
+	}
 	while (argc > 0)
 	{
 		argc--;
 		nb_argv = ft_atol(argv[argc]);
 		if ((ft_isalpha(*argv[argc])) || (nb_argv > 2147483647) || (nb_argv < -2147483648))
+		{
+			write(1, "ERROR\n", 5);
 			return (1);
+		}
 	}
 	return (0);
 }
@@ -81,15 +85,18 @@ int	parse_stack(t_stack *stack, char **argv, int argc)
 
 int main(int argc, char **argv)
 {
-	t_stack stack_a;
+	t_stack *stack_a;
 	t_stack *stack_b;
-	
+
 	stack_b = NULL;
 	if (argc > 0 && !valid_input(argv, argc))
 	{
-		stack_a.content = ft_atoi(argv[1]);
-		parse_stack(&stack_a, argv, argc);
-		ft_putstack(&stack_a);
+		stack_a = ft_stcknew(ft_atoi(argv[1]));
+		parse_stack(stack_a, argv, argc);
+		ft_putstack(stack_a);
+		r_rotate_ab(&stack_a, argc);
+		write(1, "\n", 1);
+		ft_putstack(stack_a);
 	}
 	return (0);
 }
