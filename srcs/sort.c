@@ -6,43 +6,88 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/28 14:06:11 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/10/05 10:24:04 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/10/25 12:13:30 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack get_max(t_stack *stack)
+static void	push_min(t_stack **a, t_stack **b)
 {
-    int max;
+	t_stack	*temp;
+	int		min;
+	int		i;
 
-    max = stack->content;
-
-    while(stack->next != NULL)
-    {
-        if (stack->content > max)
-            max = stack->content;
-        stack = stack->next;
-    }
-    return (*stack);
+	temp = (*a);
+	min = get_min_int(temp);
+	i = 1;
+	while (temp->content != min)
+	{
+		i++;
+		temp = temp->next;
+	}
+	temp = (*a);
+	if (i > 2)
+	{
+		while (temp->content != min)
+			r_rotate_ab(&temp, 'a');
+	}
+	else if (i == 2)
+	{
+		while (temp->content != min)
+			swap(&temp, 'a');
+	}
+	push_ab(&temp, b, 'b');
+	(*a) = temp;
 }
 
-int check_is_sorted(t_stack *stack)
+static int	sort_input_three(t_stack **a)
 {
-    while (stack->next != NULL)
-    {
-        if (stack->content < stack->next->content)
-            return (1);
-        stack = stack->next;
-    }
-    return (0);
+	t_stack	*temp;
+	int		i;
+
+	i = 0;
+	temp = (*a);
+	while (!is_sorted(temp))
+	{
+		if (temp->content > temp->next->content)
+			swap(&temp, 'a');
+		else if (get_max_int(temp) == temp->content)
+			rotate_ab(&temp, 'a');
+		else
+			r_rotate_ab(&temp, 'a');
+	}
+	(*a) = temp;
+	return (EXIT_SUCCESS);
 }
 
-int sort_stack(t_stack *stack_a, t_stack stack_b)
+static int	sort_input_four_five(t_stack **a, t_stack **b, int argc)
 {
-    write(1, "$", 1);
-    stack_b.content = 0;
-    if (check_is_sorted(stack_a))
-        return (1);
-    return (0);
+	if (argc == 5)
+		push_min(a, b);
+	push_min(a, b);
+	sort_input_three(a);
+	push_ab(b, a, 'a');
+	if (argc == 5)
+		push_ab(b, a, 'a');
+	free(*b);
+	return (EXIT_SUCCESS);
+}
+
+int	sort_stack(t_stack **a, t_stack **b, int argc)
+{
+	if (is_sorted(*a))
+		return (EXIT_SUCCESS);
+	if (argc == 3)
+		sort_input_three(a);
+	if (argc == 4 || argc == 5)
+		sort_input_four_five(a, b, argc);
+	if (argc > 5)
+	{
+		index_stack(a);
+		radix_sort(a, b, stack_len(*a));
+	}
+	if (is_sorted(*a))
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }

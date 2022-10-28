@@ -5,79 +5,67 @@
 /*                                                     +:+                    */
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/05 10:24:07 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/10/06 12:59:35 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/10/18 08:42:42 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/10/25 11:14:52 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void swap_ab(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
-    t_stack *s_next;
-    
-    s_next = stack->next;
-    if (s_next->next != NULL && stack->next != NULL)
-    {
-        stack->next = s_next->next;
-        s_next->next = stack;
-        stack = s_next;
-    }
-    return ;
+	while (stack->next != NULL)
+	{
+		if (stack->content > stack->next->content)
+			return (EXIT_SUCCESS);
+		stack = stack->next;
+	}
+	return (EXIT_FAILURE);
 }
 
-void rotate_ab(t_stack **stack)
+int	get_min_int(t_stack *s)
 {
-    t_stack *last;
-    t_stack *first;
+	t_stack	*temp;
+	int		min;
 
-    first = *stack;
-    last = ft_stcklast(*stack);
-    *stack = (*stack)->next;
-    last->next = first;
-    last = first;
-    first->next = NULL;
-    return ;
+	temp = (s);
+	min = INT_MAX;
+	while (temp)
+	{
+		if (min >= temp->content)
+			min = temp->content;
+		temp = temp->next;
+	}
+	return (min);
 }
 
-void r_rotate_ab(t_stack **stack, int argc)
+int	get_max_int(t_stack *s)
 {
-    t_stack *last;
-    t_stack *temp;
+	t_stack	*temp;
+	int		max;
 
-    last = ft_stcklast(*stack);
-    push(last->content, stack);
-    temp = *stack;
-    while (temp->next->next != NULL)
-        temp = temp->next;
-    last = ft_stcklast(*stack);
-    temp->next = NULL;
-    free(last);
-    return ;
+	temp = s;
+	max = INT_MIN;
+	while (temp->next != NULL)
+	{
+		if (temp->content > max)
+			max = temp->content;
+		temp = temp->next;
+	}
+	if (temp->content > max)
+		max = temp->content;
+	return (max);
 }
 
-void push_ab(t_stack *a, t_stack **b)
+int	stack_len(t_stack *s)
 {
-    push(a->content, b);
-    pop(a);
-    return ;
-}
+	int	i;
 
-void pop(t_stack *stack)
-{
-    t_stack *temp;
-
-    temp = stack->next;
-    *stack = *stack->next;
-    free(temp);
-}
-
-void push(int num, t_stack **stack)
-{
-    t_stack *new;
-
-    new = ft_stcknew(num);
-    if (!new)
-        return ;
-    ft_stckadd_front(stack, new);
+	i = 0;
+	while (s)
+	{
+		s = s->next;
+		i++;
+	}
+	return (i);
 }

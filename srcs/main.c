@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstiter.c                                       :+:    :+:            */
+/*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/13 14:08:32 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/10/25 11:16:23 by tklouwer      ########   odam.nl         */
+/*   Created: 2022/05/30 13:23:03 by tklouwer      #+#    #+#                 */
+/*   Updated: 2022/10/28 10:10:34 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-int	ft_lstiter(t_list *lst, int (*f)(int))
+int	main(int argc, char **argv)
 {
-	if (!lst)
-		return (0);
-	while (lst)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
-	return (0);
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc == 1)
+		return (EXIT_FAILURE);
+	if (parse_stack(&stack_a, argv, argc))
+		return (EXIT_FAILURE);
+	if (!sort_stack(&stack_a, &stack_b, argc - 1))
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }

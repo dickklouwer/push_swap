@@ -6,7 +6,7 @@
 /*   By: tklouwer <tklouwer@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/09/28 10:55:36 by tklouwer      #+#    #+#                 */
-/*   Updated: 2022/10/05 15:01:07 by tklouwer      ########   odam.nl         */
+/*   Updated: 2022/10/25 10:54:30 by tklouwer      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ t_stack	*ft_stcknew(int content)
 	return (new);
 }
 
+t_stack	*ft_stcklast(t_stack *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next != NULL)
+		stack = stack->next;
+	return (stack);
+}
+
 void	ft_stckadd_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
@@ -39,30 +48,17 @@ void	ft_stckadd_back(t_stack **stack, t_stack *new)
 	last->next = new;
 }
 
-void	ft_stckadd_front(t_stack **stack, t_stack *new)
-{
-	if (!stack || !new)
-		return ;
-	new->next = *stack;
-	*stack = new;
-}
-
 void	ft_putstack(t_stack *stack)
 {
-	while(stack)
-	{
-		ft_putnbr_fd(stack->content, 1);
-		write(1, " ", 1);
-		stack = stack->next;
-	}
-	write(1, "\n", 1);
-}
+	t_stack	*tmp;
 
-t_stack	*ft_stcklast(t_stack *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next != NULL)
-		stack = stack->next;
-	return (stack);
+	tmp = stack;
+	while (tmp != NULL)
+	{
+		ft_putnbr_fd(tmp->content, 1);
+		write(1, "\n", 1);
+		tmp = tmp->next;
+	}
+	write(1, "-----", 5);
+	write(1, "\n\n", 3);
 }
